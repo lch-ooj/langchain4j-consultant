@@ -1,0 +1,51 @@
+server:
+  port: 8080
+langchain4j:
+  open-ai:
+    chat-model:
+      api-key: ${API-KEY}
+      base-url: https://dashscope.aliyuncs.com/compatible-mode/v1
+      model-name: qwen3-max
+      log-requests: true
+      log-responses: true
+    streaming-chat-model:
+      api-key: ${API-KEY}
+      base-url: https://dashscope.aliyuncs.com/compatible-mode/v1
+      model-name: qwen3-max
+      log-requests: true
+      log-responses: true
+    embedding-model:
+      api-key: ${API-KEY}
+      base-url: https://dashscope.aliyuncs.com/compatible-mode/v1
+      model-name: text-embedding-v4
+      log-requests: true
+      log-responses: true
+      max-segments-per-batch: 10
+  community:  #向量数据库
+    redis:
+      host: 192.168.200.130
+      port: 6379
+logging:
+  level:
+    dev.langchain4j: debug
+
+spring:
+  data:
+    redis:
+      host: 192.168.200.130
+      port: 6379
+    mongodb:
+      host: 192.168.200.130
+      port: 27017
+      database: chat_memory_db
+#      authentication-database: admin    #指定认证数据库，因为我创建了一个用户root，是在admin下
+#      username: root
+#      password: 123456
+  datasource:
+    url: jdbc:mysql://192.168.200.130:3306/volunteer?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
